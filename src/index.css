@@ -25,8 +25,9 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -66,4 +67,25 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.game-board {
+  flex-shrink: 0;
+}
+
+.board-row {
+  display: flex;
+}
+
+.square {
+  height: 50px;
+  width: 50px;
+  margin: 1px;
 }
