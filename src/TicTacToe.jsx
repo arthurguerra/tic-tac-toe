@@ -95,10 +95,9 @@ export default function Game() {
         <Board isXNext={xIsNext} squares={currentSquaresState} onPlay={handePlay}/>
       </div>
       <div className="game-info">
-        <div>{moves}</div>
+        <ol>{moves}</ol>
       </div>
-    </div>
-      
+    </div>      
   );
 
 }
