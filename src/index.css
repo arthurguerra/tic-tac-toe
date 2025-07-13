@@ -89,3 +89,12 @@ button:focus-visible {
   width: 50px;
   margin: 1px;
 }
+
+.move-button {
+  margin: 5px;
+}
+
+.current-move {
+  font-weight: bold;
+  margin: 10px 10px 10px 10px;
+}
