@@ -57,6 +57,7 @@ function Board({isXNext, squares, onPlay}) {
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
+  const [isAscending, setAscending] = useState(true);
   const xIsNext = currentMove % 2 === 0;
   const currentSquaresState = history[currentMove];
 
@@ -89,13 +90,20 @@ export default function Game() {
     );
   });
 
+  function reverseOrder() {
+    setAscending(!isAscending);
+  }
+
+  const sortedMoves = isAscending ? moves : moves.slice().reverse();
+
   return (
     <div className="game">
       <div className="game-board">
         <Board isXNext={xIsNext} squares={currentSquaresState} onPlay={handePlay}/>
       </div>
       <div className="game-info">
-        <ol>{moves}</ol>
+        <button onClick={reverseOrder}>Sort {isAscending ? "Descending" : "Ascending"}</button>
+        <ol>{sortedMoves}</ol>
       </div>
     </div>      
   );
