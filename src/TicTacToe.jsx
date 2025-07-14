@@ -36,12 +36,12 @@ function Board({isXNext, squares, onPlay}) {
       for (let col = 0; col < 3; col++) {
         const squareIndex = row * 3 + col;
         columns.push(
-          <Square
+          <Square key={squareIndex}
             value={squares[squareIndex]}
             onSquareClick={() => handleClick(squareIndex)} />
         );
       }
-      rows.push(<div className="board-row">{columns}</div>);
+      rows.push(<div key={row} className="board-row">{columns}</div>);
     }
     return rows;
   }
