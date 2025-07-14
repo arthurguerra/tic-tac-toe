@@ -98,3 +98,7 @@ button:focus-visible {
   font-weight: bold;
   margin: 10px 10px 10px 10px;
 }
+
+.winner-square {
+  background-color: green;
+}
