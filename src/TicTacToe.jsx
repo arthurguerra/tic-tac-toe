@@ -77,10 +77,20 @@ export default function Game() {
 
   const moves = history.map((squares, move) => {
     let description;
+    let location = "";
+
+    if(move > 0) {
+      const previousState = history[move - 1];
+      const changedSquareIndex = squares.findIndex((square, index) => square !== previousState[index]);
+      const row = Math.floor(changedSquareIndex / 3);
+      const col = changedSquareIndex % 3;
+      location = `  (${row + 1}, ${col + 1})`;
+    }
+
     if (currentMove === move) {
-      description = "You are at move #" + move;
+      description = "You are at move #" + move + location;
     } else if (move > 0) {
-      description = "Go to move #" + move;
+      description = "Go to move #" + move + location;
     } else {
       description = "Go to game start";
     }
