@@ -102,3 +102,38 @@ button:focus-visible {
 .winner-square {
   background-color: green;
 }
+
+.app {
+  min-width: 400px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.tab {
+  flex: 1;
+  max-width: 200px;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background-color: #f0f0f0;
+}
+
+.tab.active {
+  border-color: #646cff;
+}
+
+.tab-content {
+  min-height: 400px;
+}
