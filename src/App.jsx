@@ -23,7 +23,7 @@ function App() {
       
       <div className="tab-content">
         {activeTab === 'tic-tac-toe' && <Game />}
-        {activeTab === 'thinking-in-react' && <FilterableProductTable />}
+        {activeTab === 'products' && <FilterableProductTable />}
       </div>
     </div>
   )
