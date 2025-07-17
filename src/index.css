@@ -137,3 +137,16 @@ button:focus-visible {
 .tab-content {
   min-height: 400px;
 }
+
+.flex-direction-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.margin-top-20px {
+  margin-top: 20px;
+}
