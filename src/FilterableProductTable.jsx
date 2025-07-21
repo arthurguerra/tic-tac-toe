@@ -1,29 +1,54 @@
+import { useState } from "react";
+
 function FilterableProductTable({ products }) {
+  const [filterText, setFilterText] = useState("");
+  const [isStockOnly, setStockOnly] = useState(false);
+
   return (
     <div className="flex-direction-column">
-      <SearchBar />
-      <ProductTable products={products} />
+      <SearchBar 
+        filterText={filterText} 
+        isStockOnly={isStockOnly}
+        onFilterTextChange={setFilterText}
+        onIsStockOnlyChange={setStockOnly} />
+      <ProductTable 
+        products={products} 
+        filterText={filterText} 
+        isStockOnly={isStockOnly}
+        onFilterTextChange={setFilterText}
+        onIsStockOnlyChange={setStockOnly} />
     </div>
   );
 }
 
-function SearchBar() {
+function SearchBar({ filterText, isStockOnly, onFilterTextChange, onIsStockOnlyChange }) {
   return (
     <div className="align-left">
-      <input type="text" placeholder="Search..." />
+      <input 
+        type="text" 
+        placeholder="Search..." 
+        value={filterText}
+        onChange={(e) => onFilterTextChange(e.target.value)}/>
       <div>
-        <input type="checkbox" />
+        <input 
+          type="checkbox" 
+          value={isStockOnly} 
+          onChange={(e) => onIsStockOnlyChange(e.target.checked)}/>
         <label htmlFor="">Only show products in stock</label>
       </div>
     </div>
   );
 }
 
-function ProductTable({ products }) {
+function ProductTable({ products, filterText, isStockOnly }) {
   const rows = [];
   let lastCategory = null;
 
   products.forEach(product => {
+    if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1)
+      return;
+    if (isStockOnly && !product.stocked)
+      return;
     if (product.category !== lastCategory) {
       rows.push(
         <ProductCategoryRow key={product.category} category={product.category} />
