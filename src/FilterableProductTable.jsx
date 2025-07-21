@@ -6,34 +6,43 @@ function FilterableProductTable({ products }) {
 
   return (
     <div className="flex-direction-column">
-      <SearchBar 
-        filterText={filterText} 
+      <SearchBar
+        filterText={filterText}
         isStockOnly={isStockOnly}
         onFilterTextChange={setFilterText}
-        onIsStockOnlyChange={setStockOnly} />
-      <ProductTable 
-        products={products} 
-        filterText={filterText} 
+        onIsStockOnlyChange={setStockOnly}
+      />
+      <ProductTable
+        products={products}
+        filterText={filterText}
         isStockOnly={isStockOnly}
         onFilterTextChange={setFilterText}
-        onIsStockOnlyChange={setStockOnly} />
+        onIsStockOnlyChange={setStockOnly}
+      />
     </div>
   );
 }
 
-function SearchBar({ filterText, isStockOnly, onFilterTextChange, onIsStockOnlyChange }) {
+function SearchBar({
+  filterText,
+  isStockOnly,
+  onFilterTextChange,
+  onIsStockOnlyChange,
+}) {
   return (
     <div className="align-left">
-      <input 
-        type="text" 
-        placeholder="Search..." 
+      <input
+        type="text"
+        placeholder="Search..."
         value={filterText}
-        onChange={(e) => onFilterTextChange(e.target.value)}/>
+        onChange={(e) => onFilterTextChange(e.target.value)}
+      />
       <div>
-        <input 
-          type="checkbox" 
-          value={isStockOnly} 
-          onChange={(e) => onIsStockOnlyChange(e.target.checked)}/>
+        <input
+          type="checkbox"
+          value={isStockOnly}
+          onChange={(e) => onIsStockOnlyChange(e.target.checked)}
+        />
         <label htmlFor="">Only show products in stock</label>
       </div>
     </div>
@@ -44,20 +53,20 @@ function ProductTable({ products, filterText, isStockOnly }) {
   const rows = [];
   let lastCategory = null;
 
-  products.forEach(product => {
+  products.forEach((product) => {
     if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1)
       return;
-    if (isStockOnly && !product.stocked)
-      return;
+    if (isStockOnly && !product.stocked) return;
     if (product.category !== lastCategory) {
       rows.push(
-        <ProductCategoryRow key={product.category} category={product.category} />
+        <ProductCategoryRow
+          key={product.category}
+          category={product.category}
+        />
       );
       lastCategory = product.category;
     }
-    rows.push(
-      <ProductRow key={product.name} product={product} />
-    );
+    rows.push(<ProductRow key={product.name} product={product} />);
   });
 
   return (
@@ -68,9 +77,7 @@ function ProductTable({ products, filterText, isStockOnly }) {
           <th>Price</th>
         </tr>
       </thead>
-      <tbody>
-        {rows}
-      </tbody>
+      <tbody>{rows}</tbody>
     </table>
   );
 }
